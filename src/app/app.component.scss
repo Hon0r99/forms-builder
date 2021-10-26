@@ -1,0 +1,39 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.drop {
+  border-bottom: 1px solid rgb(186, 186, 186);
+  box-shadow: 0px 3px 9px rgba(179, 179, 179, 0.323);
+  padding: 50px;
+}
+
+.draggable-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  &-item {
+    padding: 20px;
+    width: 370px;
+
+    label {
+      margin-right: 15px;
+    }
+  }
+  &-item:hover {
+    background: rgba(121, 142, 197, 0.446);
+    cursor: pointer;
+  }
+}
