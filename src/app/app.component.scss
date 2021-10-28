@@ -36,4 +36,16 @@ form {
     background: rgba(121, 142, 197, 0.446);
     cursor: pointer;
   }
+
+  &-item.active {
+    background: rgba(217, 220, 228, 0.522);
+    border: 1px solid black;
+  }
+}
+
+.change-feilds {
+  &-item {
+    padding: 8px;
+    width: 140px;
+  }
 }

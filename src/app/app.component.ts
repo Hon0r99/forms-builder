@@ -1,14 +1,9 @@
+
+import { FormItems } from './model/FormItems.model';
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, copyArrayItem,transferArrayItem} from '@angular/cdk/drag-drop';
 
-interface FormItems {
-  type?:string,
-  inputType?:string,
-  placeholder?:string,
-  label?:string,
-  text?:string,
-  options?:Array<string>,
-}
+
 
 @Component({
   selector: 'app-root',
@@ -17,14 +12,17 @@ interface FormItems {
 })
 export class AppComponent{
 
-  currentTarget!:string;
+  inputplaceholder!:any;
+
+  currentTarget:any;
+  selectedItem:any;
 
   formItems:FormItems[] = [
-    { type: 'input', placeholder: 'placeholder', label: 'Text input'},
-    { type: 'textarea', placeholder: 'placeholder textarea text', label: 'Textarea'},
-    { type: 'button', text: 'Submit', label:'Button'},
-    { type: 'checkbox', text: 'Cheked',label:'Checkbox'},
-    { type:'select', text: 'Text', label:'Select', options: ['val1', 'val2']}
+    { type: 'input', label: 'Text input', fieldOptions: {placeholderText: 'Placeholder text', width: 200, height: 60, fontSizeInput: 14}},
+    { type: 'textarea', label: 'Textarea', fieldOptions:{}},
+    { type: 'button',  label:'Button', fieldOptions:{width: 80, height:38, text: 'Submit',}},
+    { type: 'checkbox', label:'Checkbox',fieldOptions:{text: 'Cheked'}},
+    { type:'select',  label:'Select', options: ['val1', 'val2'],fieldOptions:{text: 'Text',}}
   ];
 
   droppedItems:FormItems[] = [];
@@ -34,15 +32,22 @@ export class AppComponent{
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      copyArrayItem(event.previousContainer.data,
+      transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
-                        event.currentIndex);
+                        event.currentIndex)        
     }
   }
 
-  select(event:Event){
-    this.currentTarget = (event.target as HTMLInputElement).value
+  select(item:any){
+    this.selectedItem = item;
+    console.log(item)
+    
   }
 
+  setChanges(){
+    this.selectedItem.fieldOptions.placeholderText = this.inputplaceholder;
+    console.log(this.selectedItem);
+    
+  }
 }

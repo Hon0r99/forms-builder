@@ -12,6 +12,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
+    FormsModule,
     MatExpansionModule,
     MatButtonModule,
     MatFormFieldModule,

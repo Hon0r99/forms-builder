@@ -18,7 +18,7 @@
   </mat-expansion-panel>
 
   
-  <mat-expansion-panel>
+  <mat-expansion-panel  [expanded]="selectedItem">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Field styling
@@ -28,12 +28,28 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <form *ngIf="currentTarget" action="submit">
-      <h1>{{currentTarget}}</h1>
-      <label for="color">Choose prime color!</label>
-      <input type="text" placeholder="Prime color" id="color">
-      <label for="color">Choose width!</label>
-      <input type="text" placeholder="Width" id="width">
+    <form class="change-feilds" *ngIf="selectedItem">
+      <h1>{{selectedItem.label}}</h1>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('placeholderText')" >
+        <label for="placeholder">Placeholder text</label>
+        <input name="input"type="text" placeholder="placeholder" [(ngModel)]="selectedItem.fieldOptions.placeholderText">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('width')" >
+        <label for="width">Width</label>
+        <input name="width"type="text" placeholder="width" [(ngModel)]="selectedItem.fieldOptions.width">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('height')" >
+        <label for="height">Height</label>
+        <input name="widheightth"type="text" placeholder="height" [(ngModel)]="selectedItem.fieldOptions.height">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('text')" >
+        <label for="text">Text</label>
+        <input name="text"type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.text">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')" >
+        <label for="fontSizeInput">Font Size Input</label>
+        <input name="fontSizeInput" type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.fontSizeInput">
+      </div>
     </form>
 
   </mat-expansion-panel>
@@ -41,18 +57,27 @@
 
 <div [cdkDropListData]="droppedItems" cdkDropList #listOne="cdkDropList" [cdkDropListConnectedTo]="[listTwo]" class="drop" (cdkDropListDropped)="drop($event)">
     <ng-container *ngIf="droppedItems.length">
-      <li  *ngFor="let item of droppedItems" class="draggable-fields-item" cdkDrag (click)="select($event)">
+      <li  *ngFor="let item of droppedItems" class="draggable-fields-item" cdkDrag (click)="select(item)" [ngClass]="{'active': item === selectedItem}">
         <textarea *ngIf="item.type === 'textarea'" cols="30" rows="10"></textarea>
-        <button *ngIf="item.type === 'button'" mat-raised-button>{{item.text}}</button>
-        <mat-checkbox  *ngIf="item.type === 'checkbox'" class="example-margin">{{item.text}}</mat-checkbox>
+        <button *ngIf="item.type === 'button'" [ngStyle]="{width: item.fieldOptions?.width + 'px', height: item.fieldOptions?.height + 'px'}" mat-raised-button>{{item.fieldOptions?.text}}</button>
+        <mat-checkbox  *ngIf="item.type === 'checkbox'" class="example-margin">{{item.fieldOptions?.text}}</mat-checkbox>
     
-        <mat-form-field *ngIf="item.type === 'input'"  class="example-form-field" appearance="fill">
-          <mat-label>{{item.placeholder}}</mat-label>
+        <mat-form-field 
+          *ngIf="item.type === 'input'" 
+          [ngStyle]="{
+              width: item.fieldOptions?.width + 'px',
+              height: item.fieldOptions?.height + 'px',
+              fontSize: item.fieldOptions?.fontSizeInput + 'px'
+            }" 
+          class="example-form-field" 
+          appearance="fill"
+        >
+          <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
           <input matInput type="text">
         </mat-form-field>
     
         <mat-form-field *ngIf="item.type === 'select'" appearance="fill">
-          <mat-label>{{item.text}}</mat-label>
+          <mat-label>{{item.fieldOptions?.text}}</mat-label>
           <mat-select>
             <mat-option *ngFor="let option of item.options" [value]="option">
               {{option}}
@@ -63,20 +88,26 @@
     </ng-container>
 </div>
 
-<div [cdkDropListData]="formItems" cdkDropList #listTwo="cdkDropList" [cdkDropListConnectedTo]="[listOne]" class="draggable-fields">
+
+
+<div [cdkDropListData]="formItems" cdkDropList #listTwo="cdkDropList" [cdkDropListConnectedTo]="[listOne]" class="draggable-fields" (cdkDropListDropped)="drop($event)"> 
   <li  *ngFor="let item of formItems" class="draggable-fields-item border" cdkDrag>
     <label >{{item.label}}</label>
     <textarea *ngIf="item.type === 'textarea'" cols="30" rows="10"></textarea>
-    <button *ngIf="item.type === 'button'" mat-raised-button>{{item.text}}</button>
-    <mat-checkbox  *ngIf="item.type === 'checkbox'" class="example-margin">{{item.text}}</mat-checkbox>
+    <button *ngIf="item.type === 'button'" mat-raised-button>{{item.fieldOptions?.text}}</button>
+    <mat-checkbox  *ngIf="item.type === 'checkbox'" class="example-margin">{{item.fieldOptions?.text}}</mat-checkbox>
 
-    <mat-form-field *ngIf="item.type === 'input'"  class="example-form-field" appearance="fill">
-      <mat-label>{{item.placeholder}}</mat-label>
+    <mat-form-field 
+      *ngIf="item.type === 'input'"  
+      class="example-form-field" 
+      appearance="fill"
+    >
+      <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
       <input matInput type="text">
     </mat-form-field>
 
     <mat-form-field *ngIf="item.type === 'select'" appearance="fill">
-      <mat-label>{{item.text}}</mat-label>
+      <mat-label>{{item.fieldOptions?.text}}</mat-label>
       <mat-select>
         <mat-option *ngFor="let option of item.options" [value]="option">
           {{option}}
