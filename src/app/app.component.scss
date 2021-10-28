@@ -23,6 +23,7 @@ form {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  min-height: 200px;
 
   &-item {
     padding: 20px;
@@ -48,4 +49,12 @@ form {
     padding: 8px;
     width: 140px;
   }
+}
+
+.custom-placeholder {
+  background: rgb(206, 197, 245);
+  border: dashed 2px rgb(118, 116, 126);
+  min-height: 60px;
+  transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+  min-width: 400px;
 }

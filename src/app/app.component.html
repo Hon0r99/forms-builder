@@ -48,7 +48,7 @@
       </div>
       <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')" >
         <label for="fontSizeInput">Font Size Input</label>
-        <input name="fontSizeInput" type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.fontSizeInput">
+        <input name="fontSizeInput" type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.text">
       </div>
     </form>
 
@@ -57,62 +57,31 @@
 
 <div [cdkDropListData]="droppedItems" cdkDropList #listOne="cdkDropList" [cdkDropListConnectedTo]="[listTwo]" class="drop" (cdkDropListDropped)="drop($event)">
     <ng-container *ngIf="droppedItems.length">
-      <li  *ngFor="let item of droppedItems" class="draggable-fields-item" cdkDrag (click)="select(item)" [ngClass]="{'active': item === selectedItem}">
-        <textarea *ngIf="item.type === 'textarea'" cols="30" rows="10"></textarea>
-        <button *ngIf="item.type === 'button'" [ngStyle]="{width: item.fieldOptions?.width + 'px', height: item.fieldOptions?.height + 'px'}" mat-raised-button>{{item.fieldOptions?.text}}</button>
-        <mat-checkbox  *ngIf="item.type === 'checkbox'" class="example-margin">{{item.fieldOptions?.text}}</mat-checkbox>
-    
-        <mat-form-field 
-          *ngIf="item.type === 'input'" 
-          [ngStyle]="{
-              width: item.fieldOptions?.width + 'px',
-              height: item.fieldOptions?.height + 'px',
-              fontSize: item.fieldOptions?.fontSizeInput + 'px'
-            }" 
-          class="example-form-field" 
-          appearance="fill"
-        >
-          <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-    
-        <mat-form-field *ngIf="item.type === 'select'" appearance="fill">
-          <mat-label>{{item.fieldOptions?.text}}</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let option of item.options" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <ng-container >
+      <li  *ngFor="let item of droppedItems" class="draggable-fields-item"  cdkDrag (click)="select(item)" [ngClass]="{'active': item === selectedItem}" >
+        <div *cdkDragPlaceholder class="custom-placeholder "></div>
+          <app-textarea [item]="item"></app-textarea>
+          <app-button [item]="item"></app-button>
+          <app-checkbox [item]="item"></app-checkbox>
+          <app-input [item]="item"></app-input>
+          <app-select [item]='item'></app-select>
       </li>	
+    </ng-container>
     </ng-container>
 </div>
 
 
 
 <div [cdkDropListData]="formItems" cdkDropList #listTwo="cdkDropList" [cdkDropListConnectedTo]="[listOne]" class="draggable-fields" (cdkDropListDropped)="drop($event)"> 
+  <div *cdkDragPlaceholder class="example-custom-placeholder "></div>
   <li  *ngFor="let item of formItems" class="draggable-fields-item border" cdkDrag>
+    <div *cdkDragPlaceholder class="custom-placeholder "></div>
     <label >{{item.label}}</label>
-    <textarea *ngIf="item.type === 'textarea'" cols="30" rows="10"></textarea>
-    <button *ngIf="item.type === 'button'" mat-raised-button>{{item.fieldOptions?.text}}</button>
-    <mat-checkbox  *ngIf="item.type === 'checkbox'" class="example-margin">{{item.fieldOptions?.text}}</mat-checkbox>
+    <app-textarea [item]="item"></app-textarea>
+    <app-button [item]="item"></app-button>
+    <app-checkbox [item]="item"></app-checkbox>
+    <app-input [item]="item"></app-input>
+    <app-select [item]='item'></app-select>
 
-    <mat-form-field 
-      *ngIf="item.type === 'input'"  
-      class="example-form-field" 
-      appearance="fill"
-    >
-      <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
-      <input matInput type="text">
-    </mat-form-field>
-
-    <mat-form-field *ngIf="item.type === 'select'" appearance="fill">
-      <mat-label>{{item.fieldOptions?.text}}</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let option of item.options" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </li>						
+  </li>			
 </div>

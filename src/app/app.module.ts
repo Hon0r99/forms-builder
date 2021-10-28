@@ -13,10 +13,20 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { InputComponent } from './components/input/input.component';
+import { ButtonComponent } from './components/button/button.component';
+import { SelectComponent } from './components/select/select.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    InputComponent,
+    ButtonComponent,
+    SelectComponent,
+    CheckboxComponent,
+    TextareaComponent,
   ],
   imports: [
     BrowserModule,

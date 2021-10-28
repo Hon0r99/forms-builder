@@ -1,0 +1,10 @@
+<button 
+    *ngIf="item.type === 'button'" 
+    [ngStyle]="{
+        width: item.fieldOptions?.width + 'px',
+        height: item.fieldOptions?.height + 'px'
+    }" 
+    mat-raised-button
+>
+    {{item.fieldOptions?.text}}
+</button>

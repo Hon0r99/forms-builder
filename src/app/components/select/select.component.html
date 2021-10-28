@@ -1,0 +1,14 @@
+<mat-form-field 
+    *ngIf="item.type === 'select'" 
+    appearance="fill"
+>
+    <mat-label>{{item.fieldOptions?.text}}</mat-label>
+    <mat-select>
+        <mat-option 
+            *ngFor="let option of item.options" 
+            [value]="option"
+        >
+            {{option}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

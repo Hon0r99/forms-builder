@@ -1,0 +1,13 @@
+<mat-form-field 
+    *ngIf="item.type === 'textarea'"    
+    appearance="fill"
+>
+    <mat-label>Autosize textarea</mat-label>
+    <textarea 
+        matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="20">
+    </textarea>
+  </mat-form-field>
