@@ -12,7 +12,7 @@ import { CdkPortalOutlet, ComponentPortal, TemplatePortal} from '@angular/cdk/po
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  selectedItem!:any;
+  selectedItem:any;
   mainTheme:string = 'primary';
 
   formItems:FormItems[] = [

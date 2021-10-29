@@ -4,9 +4,6 @@
       <mat-panel-title>
         Form general styling
       </mat-panel-title>
-      <mat-panel-description>
-        This is a summary of the content
-      </mat-panel-description>
     </mat-expansion-panel-header>
 
     <form >
@@ -35,14 +32,11 @@
   </mat-expansion-panel>
 
   
-  <mat-expansion-panel  [expanded]="selectedItem">
+  <mat-expansion-panel  [expanded]="selectedItem" [disabled]="!selectedItem">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Field styling
       </mat-panel-title>
-      <mat-panel-description>
-        This is a summary of the content
-      </mat-panel-description>
     </mat-expansion-panel-header>
 
     <form class="change-feilds" *ngIf="selectedItem">
@@ -58,10 +52,6 @@
       <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('height')" >
         <label for="height">Height</label>
         <input name="widheightth"type="text" placeholder="height" [(ngModel)]="selectedItem.fieldOptions.height">
-      </div>
-      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('text')" >
-        <label for="text">Text</label>
-        <input name="text"type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.text">
       </div>
       <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')" >
         <label for="fontSizeInput">Font Size Input</label>
