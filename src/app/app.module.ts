@@ -18,6 +18,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { SelectComponent } from './components/select/select.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TextareaComponent } from './components/textarea/textarea.component';
     DragDropModule,
     MatCheckboxModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    PortalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

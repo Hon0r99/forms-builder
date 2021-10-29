@@ -8,5 +8,4 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InputComponent {
   @Input() item!:FormItems;
-
 }

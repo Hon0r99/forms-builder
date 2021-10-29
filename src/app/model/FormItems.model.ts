@@ -6,5 +6,6 @@ export interface FormItems {
     label:string,
     text?:string,
     options?:Array<string>,
-    fieldOptions?:FieldOptions,
+    theme:string,
+    fieldOptions:FieldOptions,
   }

@@ -9,11 +9,28 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <form action="submit">
-      <label for="color">Choose prime color!</label>
-      <input type="text" placeholder="Prime color" id="color">
-      <label for="color">Choose width!</label>
-      <input type="text" placeholder="Width" id="width">
+    <form >
+      <mat-form-field 
+          appearance="fill"
+      >
+          <mat-label>Choose theme</mat-label>
+          <mat-select 
+            [(ngModel)]="mainTheme"
+            [ngModelOptions]="{standalone: true}"
+          >
+              <mat-option 
+                  *ngFor="let option of selectTheme" 
+                  [value]="option.value"
+              >
+                  {{option.viewValue}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <button mat-raised-button
+              color={{mainTheme}} 
+              type="button" 
+              (click)="setChanges()">Set changes
+      </button>
     </form>
   </mat-expansion-panel>
 
@@ -48,40 +65,38 @@
       </div>
       <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')" >
         <label for="fontSizeInput">Font Size Input</label>
-        <input name="fontSizeInput" type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.text">
+        <input name="fontSizeInput" type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.fontSizeInput">
       </div>
     </form>
 
   </mat-expansion-panel>
 <mat-accordion>
 
-<div [cdkDropListData]="droppedItems" cdkDropList #listOne="cdkDropList" [cdkDropListConnectedTo]="[listTwo]" class="drop" (cdkDropListDropped)="drop($event)">
-    <ng-container *ngIf="droppedItems.length">
-      <ng-container >
+<ul [cdkDropListData]="droppedItems" cdkDropList #listOne="cdkDropList" [cdkDropListConnectedTo]="[listTwo]" class="drop" (cdkDropListDropped)="drop($event)">
+    <ng-container *ngIf="droppedItems.length" >
       <li  *ngFor="let item of droppedItems" class="draggable-fields-item"  cdkDrag (click)="select(item)" [ngClass]="{'active': item === selectedItem}" >
         <div *cdkDragPlaceholder class="custom-placeholder "></div>
-          <app-textarea [item]="item"></app-textarea>
-          <app-button [item]="item"></app-button>
-          <app-checkbox [item]="item"></app-checkbox>
-          <app-input [item]="item"></app-input>
-          <app-select [item]='item'></app-select>
+          <app-textarea [item]="item" *ngIf="item.type === 'textarea'" ></app-textarea>
+          <app-button [item]="item" *ngIf="item.type === 'button'" ></app-button>
+          <app-checkbox [item]="item" *ngIf="item.type === 'checkbox'" ></app-checkbox>
+          <app-input [item]="item" *ngIf="item.type === 'input'" ></app-input>
+          <app-select [item]='item' *ngIf="item.type === 'select'" ></app-select>
       </li>	
     </ng-container>
-    </ng-container>
-</div>
+  </ul>
 
 
 
-<div [cdkDropListData]="formItems" cdkDropList #listTwo="cdkDropList" [cdkDropListConnectedTo]="[listOne]" class="draggable-fields" (cdkDropListDropped)="drop($event)"> 
+<ul [cdkDropListData]="formItems" cdkDropList #listTwo="cdkDropList" [cdkDropListConnectedTo]="[listOne]" class="draggable-fields"> 
   <div *cdkDragPlaceholder class="example-custom-placeholder "></div>
   <li  *ngFor="let item of formItems" class="draggable-fields-item border" cdkDrag>
     <div *cdkDragPlaceholder class="custom-placeholder "></div>
     <label >{{item.label}}</label>
-    <app-textarea [item]="item"></app-textarea>
-    <app-button [item]="item"></app-button>
-    <app-checkbox [item]="item"></app-checkbox>
-    <app-input [item]="item"></app-input>
-    <app-select [item]='item'></app-select>
-
+    <app-textarea [item]="item" *ngIf="item.type === 'textarea'" ></app-textarea>
+    <app-button [item]="item" *ngIf="item.type === 'button'" ></app-button>
+    <app-checkbox [item]="item" *ngIf="item.type === 'checkbox'" ></app-checkbox>
+    <app-input [item]="item" *ngIf="item.type === 'input'" ></app-input>
+    <app-select [item]='item' *ngIf="item.type === 'select'" ></app-select>
   </li>			
-</div>
+</ul>
+

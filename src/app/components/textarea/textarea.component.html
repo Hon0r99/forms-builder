@@ -1,13 +1,15 @@
-<mat-form-field 
-    *ngIf="item.type === 'textarea'"    
+<mat-form-field  
     appearance="fill"
+    color={{item.theme}}
+    [ngStyle]="{'width': item.fieldOptions?.width + 'px'}" 
 >
-    <mat-label>Autosize textarea</mat-label>
+    <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
     <textarea 
+        
         matInput
         cdkTextareaAutosize
         #autosize="cdkTextareaAutosize"
         cdkAutosizeMinRows="5"
         cdkAutosizeMaxRows="20">
     </textarea>
-  </mat-form-field>
+</mat-form-field>
