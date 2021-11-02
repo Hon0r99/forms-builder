@@ -32,16 +32,16 @@
   </mat-expansion-panel>
 
   
-  <mat-expansion-panel  [expanded]="selectedItem" [disabled]="!selectedItem">
+  <mat-expansion-panel  [expanded]="selectedItem.hasOwnProperty('id')" [disabled]="!selectedItem">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Field styling
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <form class="change-feilds" *ngIf="selectedItem">
+    <form class="change-feilds" *ngIf="selectedItem.hasOwnProperty('id')">
       <h1>{{selectedItem.label}}</h1>
-      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('placeholderText')" >
+      <!-- <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('placeholderText')" >
         <label for="placeholder">Placeholder text</label>
         <input name="input"type="text" placeholder="placeholder" [(ngModel)]="selectedItem.fieldOptions.placeholderText">
       </div>
@@ -56,7 +56,7 @@
       <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')" >
         <label for="fontSizeInput">Font Size Input</label>
         <input name="fontSizeInput" type="text" placeholder="text" [(ngModel)]="selectedItem.fieldOptions.fontSizeInput">
-      </div>
+      </div> -->
     </form>
 
   </mat-expansion-panel>
@@ -89,4 +89,3 @@
     <app-select [item]='item' *ngIf="item.type === 'select'" ></app-select>
   </li>			
 </ul>
-

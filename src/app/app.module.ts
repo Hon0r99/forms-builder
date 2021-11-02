@@ -19,6 +19,9 @@ import { SelectComponent } from './components/select/select.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { PortalModule } from '@angular/cdk/portal';
+import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import * as fromReducer from './store/fields.reducer'
 
 @NgModule({
   declarations: [
@@ -41,7 +44,12 @@ import { PortalModule } from '@angular/cdk/portal';
     MatCheckboxModule,
     MatIconModule,
     MatSelectModule,
-    PortalModule
+    PortalModule,
+    StoreModule.forRoot({fields: fromReducer.reducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

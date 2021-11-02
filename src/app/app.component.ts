@@ -3,6 +3,9 @@ import { FormItems } from './model/FormItems.model';
 import { AfterViewInit, Component,  ComponentFactoryResolver,  OnInit,  TemplateRef,  ViewChild, ViewContainerRef} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, copyArrayItem,transferArrayItem} from '@angular/cdk/drag-drop';
 import { CdkPortalOutlet, ComponentPortal, TemplatePortal} from '@angular/cdk/portal';
+import { Store } from '@ngrx/store';
+import { FieldsAction } from './store/fields.action';
+import { FieldsSelectors } from './store/fields.selectors';
 
 
 
@@ -12,7 +15,7 @@ import { CdkPortalOutlet, ComponentPortal, TemplatePortal} from '@angular/cdk/po
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  selectedItem:any;
+  selectedItem!:FormItems;
   mainTheme:string = 'primary';
 
   formItems:FormItems[] = [
@@ -35,21 +38,27 @@ export class AppComponent {
   ]
 
 
-  drop(event: any){
-    console.log(event)
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      this.droppedItems.push(JSON.parse(JSON.stringify({id: event.container.data.length, theme: this.mainTheme, ...event.previousContainer.data[event.previousIndex]})))
-    }
+  constructor (private store$: Store){
+    this.store$.select(FieldsSelectors.droppedItems).subscribe(items => this.droppedItems = items);
+    this.store$.select(FieldsSelectors.selectedItem).subscribe(item => this.selectedItem = item);
   }
 
-  select(item:any){;
-    this.selectedItem = item;
+  drop(event: any){
+    if (event.previousContainer === event.container) {
+      this.store$.dispatch(FieldsAction.moveField({currentIndex: event.currentIndex, previousIndex: event.previousIndex}))
+    } else {
+      this.store$.dispatch(FieldsAction.newField({field: JSON.parse(JSON.stringify({id: event.container.data.length, theme: this.mainTheme, ...event.previousContainer.data[event.previousIndex]})), index: event.currentIndex}))
+    }
+    
+  }
+
+  select(item:FormItems){
+    this.store$.dispatch(FieldsAction.selectField({field: item}))
+    console.log(this.selectedItem);
+    
   }
 
   setChanges(){
-    console.log(this.mainTheme);
     this.droppedItems.forEach(el => {
       el.theme = this.mainTheme;
       

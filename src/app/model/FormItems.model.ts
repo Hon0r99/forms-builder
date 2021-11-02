@@ -2,10 +2,10 @@ import { FieldOptions } from './FieldOptions.model';
 
 export interface FormItems {
     id?:number,
-    type:string,
-    label:string,
+    type?:string,
+    label?:string,
     text?:string,
     options?:Array<string>,
-    theme:string,
-    fieldOptions:FieldOptions,
+    theme?:string,
+    fieldOptions?:FieldOptions,
   }
