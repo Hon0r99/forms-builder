@@ -7,5 +7,5 @@ export interface FormItems {
     text?:string,
     options?:Array<string>,
     theme?:string,
-    fieldOptions?:FieldOptions,
+    fieldOptions:FieldOptions,
   }

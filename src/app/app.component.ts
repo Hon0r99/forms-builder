@@ -1,35 +1,28 @@
-import { TextareaComponent } from './components/textarea/textarea.component';
+
 import { FormItems } from './model/FormItems.model';
-import { AfterViewInit, Component,  ComponentFactoryResolver,  OnInit,  TemplateRef,  ViewChild, ViewContainerRef} from '@angular/core';
-import {CdkDragDrop, moveItemInArray, copyArrayItem,transferArrayItem} from '@angular/cdk/drag-drop';
-import { CdkPortalOutlet, ComponentPortal, TemplatePortal} from '@angular/cdk/portal';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
 import { Store } from '@ngrx/store';
 import { FieldsAction } from './store/fields.action';
 import { FieldsSelectors } from './store/fields.selectors';
+import { Observable } from 'rxjs';
 
-
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  selectedItem!:FormItems;
-  mainTheme:string = 'primary';
+export class AppComponent implements OnInit{
+  selectedItem$:Observable<FormItems>;
+  droppedItems$:Observable<FormItems[]>;
 
-  formItems:FormItems[] = [
-    { type: 'input', label: 'Text input', theme: this.mainTheme, fieldOptions: {placeholderText: 'Placeholder text', width: 200, fontSizeInput: 14,}},
-    { type: 'textarea', label: 'Textarea', theme: this.mainTheme,  fieldOptions:{width: 200, placeholderText: 'Placeholder text'}},
-    { type: 'button',  label:'Button', theme: this.mainTheme,  fieldOptions:{width: 80, height:38, placeholderText: 'Submit',}},
-    { type: 'checkbox', label:'Checkbox', theme: this.mainTheme, fieldOptions:{placeholderText: 'Placeholder text'}},
-    { type:'select',  label:'Select', theme: this.mainTheme,  options: ['val1', 'val2'],fieldOptions:{placeholderText: 'Placeholder text'}}
-  ];
+  mainTheme!:string;
+  formItems!:FormItems[];
 
-  droppedItems:FormItems[] = [
-   
-  ];
-
+ 
 
   selectTheme = [
     {value: 'primary', viewValue: 'Primary'},
@@ -38,10 +31,15 @@ export class AppComponent {
   ]
 
 
-  constructor (private store$: Store){
-    this.store$.select(FieldsSelectors.droppedItems).subscribe(items => this.droppedItems = items);
-    this.store$.select(FieldsSelectors.selectedItem).subscribe(item => this.selectedItem = item);
+  constructor (private store$: Store, private http: HttpClient){
+    this.selectedItem$ = this.store$.select(FieldsSelectors.selectedItem)
+    this.droppedItems$ = this.store$.select(FieldsSelectors.droppedItems)
   }
+
+  ngOnInit(){
+    this.http.get('http://localhost:3000/formItems').subscribe((data:any) => {this.formItems = data; this.mainTheme = data[0].theme});
+  }
+
 
   drop(event: any){
     if (event.previousContainer === event.container) {
@@ -54,18 +52,13 @@ export class AppComponent {
 
   select(item:FormItems){
     this.store$.dispatch(FieldsAction.selectField({field: item}))
-    console.log(this.selectedItem);
-    
   }
 
   setChanges(){
-    this.droppedItems.forEach(el => {
-      el.theme = this.mainTheme;
-      
-    })
+    this.store$.dispatch(FieldsAction.changeTheme({theme: this.mainTheme}))
     this.formItems.forEach(el => {
       el.theme = this.mainTheme;
       
-    })
+    }) 
   }
 }

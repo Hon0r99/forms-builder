@@ -14,4 +14,12 @@ export namespace FieldsAction {
         'SELECT_FIELD',
         props< {field: FormItems}>()
     );
+    export const changeField = createAction(
+        'SELECT_FIELD',
+        props< {field: FormItems}>()
+    );
+    export const changeTheme = createAction(
+        'SELECT_THEME',
+        props< {theme: string}>()
+    );
 }

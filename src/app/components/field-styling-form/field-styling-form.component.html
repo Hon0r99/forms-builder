@@ -1,0 +1,20 @@
+<form class="change-feilds" [formGroup]="profileForm" (ngSubmit)="onSubmit()"> 
+
+    <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions?.hasOwnProperty('placeholderText')" >
+        <label for="placeholder">Placeholder text</label>
+        <input name="input"type="text" placeholder="placeholder"  formControlName="placeholderText">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('width')" >
+        <label for="width">Width</label>
+        <input name="width"type="number" placeholder="width" formControlName="width">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('height')" >
+        <label for="height">Height</label>
+        <input name="widheightth"type="number" placeholder="height" formControlName="height">
+      </div>
+      <div class="change-feilds-item" *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')" >
+        <label for="fontSizeInput">Font Size Input</label>
+        <input name="fontSizeInput" type="text" placeholder="text" formControlName="fontSizeInput">
+      </div>
+    <button mat-raised-button type="submit" [disabled]="!profileForm.valid">Change field</button>
+  </form>

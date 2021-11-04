@@ -10,7 +10,7 @@ export interface State {
 
 const initialState: State = {
     droppedItems: [],
-    selectedItem: {},
+    selectedItem: {fieldOptions: {}},
 };
 
 const feildsReducer = createReducer(
@@ -27,9 +27,23 @@ const feildsReducer = createReducer(
         ...[...state.droppedItems.slice(0,previousIndex), ...state.droppedItems.slice(previousIndex + 1)].slice(currentIndex)
 ]
     })),
-    on(FieldsAction.newField, (state,{field}) =>({
+    on(FieldsAction.selectField, (state,{field}) =>({
         ...state,
         selectedItem: field
+    })),
+    on(FieldsAction.changeField, (state,{field}) =>({
+        ...state,
+        droppedItems: state.droppedItems.map(el => {
+            if (el.id === field.id){
+                return field
+            }else return el
+        })
+    })),
+    on(FieldsAction.changeTheme, (state,{theme}) =>({
+        ...state,
+        droppedItems: state.droppedItems.map(el => {
+            return {...el, theme: theme}
+        })
     })),
 );
 
