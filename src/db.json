@@ -1,30 +1,65 @@
-
 {
-    "formItems": [
-        { "type": "input", "label": "Text input", "theme": "primary", "fieldOptions": 
-            {
-                "placeholderText": "Placeholder text",
-                "width": 200,
-                "fontSizeInput": 14
-            }},
-        { "type": "textarea", "label": "Textarea", "theme": "primary",  "fieldOptions":
-            {
-                "width": 200,
-                "placeholderText": "Placeholder text"
-            }},
-        { "type": "button",  "label":"Button", "theme": "primary",  "fieldOptions":
-            {
-                "width": 80,
-                "height":38,
-                "placeholderText": "Submit"
-            }},
-        { "type": "checkbox", "label":"Checkbox", "theme": "primary", "fieldOptions":
-            {
-                "placeholderText": "Placeholder text"
-            }},
-        { "type":"select",  "label":"Select", "theme": "primary",  "options": ["val1", "val2"],"fieldOptions":
-            {
-                "placeholderText": "Placeholder text"
-            }}
-    ]
+  "formItems": [
+    {
+      "type": "input",
+      "label": "Text input",
+      "theme": "primary",
+      "fieldOptions": {
+        "placeholderText": "Placeholder text",
+        "width": 200,
+        "fontSizeInput": 14
+      }
+    },
+    {
+      "type": "textarea",
+      "label": "Textarea",
+      "theme": "primary",
+      "fieldOptions": {
+        "width": 200,
+        "placeholderText": "Placeholder text"
+      }
+    },
+    {
+      "type": "button",
+      "label": "Button",
+      "theme": "primary",
+      "fieldOptions": {
+        "width": 80,
+        "height": 38,
+        "placeholderText": "Submit"
+      }
+    },
+    {
+      "type": "checkbox",
+      "label": "Checkbox",
+      "theme": "primary",
+      "fieldOptions": {
+        "placeholderText": "Placeholder text"
+      }
+    },
+    {
+      "type": "select",
+      "label": "Select",
+      "theme": "primary",
+      "options": [
+        "val1",
+        "val2"
+      ],
+      "fieldOptions": {
+        "placeholderText": "Placeholder text"
+      }
+    }
+  ],
+  "users": [
+    {
+      "email": "test@mail.ru",
+      "password": "$2a$10$GXuSuu1l91BTJaDECEuxwOntpu1sSON32sy4FwfIcUhdJBCToid..",
+      "id": 1
+    },
+    {
+      "email": "test1@mail.ru",
+      "password": "$2a$10$9lwnzE5Vj5Nggpx0O4TuBOOcXwv9uSZISNGgerH8L9g2kjsrlJVlu",
+      "id": 2
+    }
+  ]
 }

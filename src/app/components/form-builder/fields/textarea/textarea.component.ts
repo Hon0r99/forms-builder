@@ -1,4 +1,4 @@
-import { FormItems } from '../../../model/FormItems.model';
+import { FormItems } from '../../../../model/FormItems.model';
 import { Component, Input,  } from '@angular/core';
 
 @Component({

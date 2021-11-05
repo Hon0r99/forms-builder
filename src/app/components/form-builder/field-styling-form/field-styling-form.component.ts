@@ -1,9 +1,9 @@
-import { FieldOptions } from '../../model/FieldOptions.model';
-import { FormItems } from '../../model/FormItems.model';
+import { FieldOptions } from '../../../model/FieldOptions.model';
+import { FormItems } from '../../../model/FormItems.model';
 
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FieldsAction } from '../../store/fields.action';
+import { FieldsAction } from '../../../store/fields.action';
 import { Store } from '@ngrx/store';
 
 @Component({
