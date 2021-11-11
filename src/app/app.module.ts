@@ -70,13 +70,15 @@ import { SignupComponent } from './components/auth/signup/signup.component';
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ReqInterceptor,
     multi: true,
   },
+   FormBuilderComponent,
 ],
   bootstrap: [AppComponent]
 })

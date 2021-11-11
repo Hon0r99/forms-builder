@@ -36,10 +36,7 @@ export class FieldStylingFormComponent {
     });
     this.store$.dispatch(FieldsAction.changeField({field: item}));
     this.profileForm.reset()
-  }
-
-  hello(){
-    console.log(this.selectedItem);
+    console.log(this.profileForm);
     
   }
 } 

@@ -1,6 +1,10 @@
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignupComponent } from './signup.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -8,7 +12,10 @@ describe('SignupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupComponent ]
+      imports: [ RouterTestingModule],
+      providers: [FormBuilder, HttpClient, HttpHandler,],
+      declarations: [ SignupComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

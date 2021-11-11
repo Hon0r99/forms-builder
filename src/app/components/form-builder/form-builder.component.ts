@@ -7,6 +7,7 @@ import { FieldsSelectors } from '../../store/fields.selectors';
 import { Observable } from 'rxjs';
 
 import { HttpClient} from '@angular/common/http';
+import { FormBuilderService } from './form-builder.service';
 
 @Component({
   selector: 'app-form-builder',
@@ -30,31 +31,26 @@ export class FormBuilderComponent  implements OnInit{
   ]
 
 
-  constructor (private store$: Store, private http: HttpClient){
+  constructor (private store$: Store, private http: HttpClient, private fromBuilderService: FormBuilderService){
     this.selectedItem$ = this.store$.select(FieldsSelectors.selectedItem)
     this.droppedItems$ = this.store$.select(FieldsSelectors.droppedItems)
   }
 
   ngOnInit(){
-    this.http.get('http://localhost:3000/formItems').subscribe((data:any) => {this.formItems = data; this.mainTheme = data[0].theme});
+    this.fromBuilderService.getFormItems().subscribe((data:any) => {this.formItems = data; this.mainTheme = data[0].theme});
   }
 
 
   drop(event: any){
-    if (event.previousContainer === event.container) {
-      this.store$.dispatch(FieldsAction.moveField({currentIndex: event.currentIndex, previousIndex: event.previousIndex}))
-    } else {
-      this.store$.dispatch(FieldsAction.newField({field: JSON.parse(JSON.stringify({id: event.container.data.length, theme: this.mainTheme, ...event.previousContainer.data[event.previousIndex]})), index: event.currentIndex}))
-    }
-    
+    this.fromBuilderService.drop(event, this.mainTheme)
   }
 
   select(item:FormItems){
-    this.store$.dispatch(FieldsAction.selectField({field: item}))
+    this.fromBuilderService.select(item)
   }
 
   setChanges(){
-    this.store$.dispatch(FieldsAction.changeTheme({theme: this.mainTheme}))
+    this.fromBuilderService.setChanges(this.mainTheme, )
     this.formItems.forEach(el => {
       el.theme = this.mainTheme;
       

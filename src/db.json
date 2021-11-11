@@ -60,6 +60,11 @@
       "email": "test1@mail.ru",
       "password": "$2a$10$9lwnzE5Vj5Nggpx0O4TuBOOcXwv9uSZISNGgerH8L9g2kjsrlJVlu",
       "id": 2
+    },
+    {
+      "email": "qwe@GGG.VV",
+      "password": "$2a$10$m1g284PHp5Q3R5v9STd38.wQnIaXbDxh5WIMgRPY12Dkykse0YJjO",
+      "id": 3
     }
   ]
 }

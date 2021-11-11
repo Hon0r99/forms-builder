@@ -17,7 +17,8 @@ export class AuthService {
 
 
     login(data:object){
-        console.log(this._isLoggedIn$.value);
+        console.log(this.http.post<object>("http://localhost:3000/login", data).subscribe(res => console.log(res)))
+        
         
         return this.http.post<object>("http://localhost:3000/login", data)
             .pipe(
@@ -25,7 +26,6 @@ export class AuthService {
                 this._isLoggedIn$.next(true);
                 localStorage.setItem('auth_key', response.token);
                 })
-            )
-        
+            )        
     }
 }

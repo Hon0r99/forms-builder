@@ -16,6 +16,17 @@ describe('ButtonComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
+    const item = {
+      "type": "button",
+      "label": "Button",
+      "theme": "primary",
+      "fieldOptions": {
+        "width": 80,
+        "height": 38,
+        "placeholderText": "Submit"
+      }
+    };
+    component.item = item;
     fixture.detectChanges();
   });
 
