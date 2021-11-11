@@ -24,7 +24,7 @@ export class AuthService {
             .pipe(
                 tap((response: any) => {
                 this._isLoggedIn$.next(true);
-                localStorage.setItem('auth_key', response.token);
+                localStorage.setItem('auth_key', response.accessToken);
                 })
             )        
     }
