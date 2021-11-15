@@ -2,12 +2,15 @@
     class="example-form-field" 
     appearance="fill"
     color={{item?.theme}}
+    
     [ngStyle]="{
         'width': item.fieldOptions?.width + 'px',
         'height': item.fieldOptions?.height + 'px',
-        'font-size': item.fieldOptions?.fontSizeInput + 'px'
+        'font-size': item.fieldOptions?.fontSizeInput + 'px',
+        'border': '1px ' + item.fieldOptions?.borderStyle + ' #a9a9a9',
+        'padding': '5px'
       }" 
 >
       <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
-      <input matInput type="text">
+      <input [required]="item.fieldOptions?.required" matInput type="text">
 </mat-form-field>

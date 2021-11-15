@@ -24,8 +24,9 @@ export class LoginComponent implements OnInit{
         })
     }
 
-    login(){
-
+    login():void{
+        console.log(this.authService.login(this.loginForm.value));
+        
         this.authService.login(this.loginForm.value).subscribe(res => {
             alert('Login successfull');
             this.loginForm.reset();

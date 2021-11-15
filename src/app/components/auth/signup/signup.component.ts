@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   
   public signupForm !: FormGroup;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router:Router){}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router:Router, private authService: AuthService){}
 
 
   ngOnInit():void {
@@ -21,8 +22,8 @@ export class SignupComponent implements OnInit {
       })
   }
 
-  signup(){
-      this.http.post<any>("http://localhost:3000/register", this.signupForm.value)
+  signup():void{
+      this.authService.login(this.signupForm.value)
       .subscribe(res => {
           alert('Singup successfull');
           this.signupForm.reset();

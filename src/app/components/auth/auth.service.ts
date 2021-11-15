@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -16,10 +16,7 @@ export class AuthService {
   }
 
 
-    login(data:object){
-        console.log(this.http.post<object>("http://localhost:3000/login", data).subscribe(res => console.log(res)))
-        
-        
+    login(data:object):Observable<any>{
         return this.http.post<object>("http://localhost:3000/login", data)
             .pipe(
                 tap((response: any) => {
@@ -28,4 +25,8 @@ export class AuthService {
                 })
             )        
     }
+
+    signup(data:object):Observable<any>{
+      return this.http.post<any>("http://localhost:3000/register", data)
+  }
 }

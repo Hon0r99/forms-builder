@@ -7,7 +7,9 @@
       "fieldOptions": {
         "placeholderText": "Placeholder text",
         "width": 200,
-        "fontSizeInput": 14
+        "fontSizeInput": 14,
+        "borderStyle": "hidden",
+        "required": false
       }
     },
     {
@@ -16,7 +18,8 @@
       "theme": "primary",
       "fieldOptions": {
         "width": 200,
-        "placeholderText": "Placeholder text"
+        "placeholderText": "Placeholder text",
+        "required": false
       }
     },
     {
@@ -34,7 +37,8 @@
       "label": "Checkbox",
       "theme": "primary",
       "fieldOptions": {
-        "placeholderText": "Placeholder text"
+        "placeholderText": "Placeholder text",
+        "required": false
       }
     },
     {
@@ -46,7 +50,8 @@
         "val2"
       ],
       "fieldOptions": {
-        "placeholderText": "Placeholder text"
+        "placeholderText": "Placeholder text",
+        "required": false
       }
     }
   ],

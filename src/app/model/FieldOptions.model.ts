@@ -6,5 +6,5 @@ export interface FieldOptions {
     fontSizeInput?:number,
     fontWeighSelect?:string,
     colorInputRGB?:string,
-    required?:string,
+    required?:boolean,
 }    

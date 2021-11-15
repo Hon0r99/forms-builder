@@ -5,7 +5,7 @@
 >
     <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
     <textarea 
-        
+        [required]="item.fieldOptions?.required"
         matInput
         cdkTextareaAutosize
         #autosize="cdkTextareaAutosize"

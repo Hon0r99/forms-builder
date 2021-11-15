@@ -2,7 +2,7 @@ import { FieldOptions } from '../../../model/FieldOptions.model';
 import { FormItems } from '../../../model/FormItems.model';
 
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FieldsAction } from '../../../store/fields.action';
 import { Store } from '@ngrx/store';
 
@@ -14,18 +14,21 @@ import { Store } from '@ngrx/store';
 export class FieldStylingFormComponent {
   @Input() selectedItem!:FormItems;
 
+  borderStyleOptions = ['none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'  ];
+  
+
   profileForm = new FormGroup({
     placeholderText: new FormControl(null,[Validators.min(1)]),
     width: new FormControl(null,[Validators.max(800)]),
     height: new FormControl(null,[Validators.max(400)]),
     fontSizeInput: new FormControl(null,[Validators.max(72)]),
+    borderStyle: new FormControl(this.borderStyleOptions[0]),
+    required: new FormControl(),
   });
 
   constructor (private store$: Store){ }
 
   onSubmit() {
-    console.log(this.profileForm.value);
-    
     let item = JSON.parse(JSON.stringify(this.selectedItem))
     
     Object.keys(item.fieldOptions)

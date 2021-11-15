@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -10,7 +11,8 @@ describe('FieldStylingFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore({})],
+      providers: [provideMockStore({}),],
+      imports: [ReactiveFormsModule,],
       declarations: [ FieldStylingFormComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -21,12 +23,17 @@ describe('FieldStylingFormComponent', () => {
     fixture = TestBed.createComponent(FieldStylingFormComponent);
     component = fixture.componentInstance;
     const item = {
-      "type": "checkbox",
-      "label": "Checkbox",
+      "type": "input",
+      "label": "Text input",
       "theme": "primary",
       "fieldOptions": {
-        "placeholderText": "Placeholder text"
+        "placeholderText": "Placeholder text",
+        "width": 200,
+        "fontSizeInput": 14,
+        "borderStyle": "hidden",
+        "required": false
       }
+    
     };
     component.selectedItem = item;
     fixture.detectChanges();
@@ -34,6 +41,7 @@ describe('FieldStylingFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    console.log(component.profileForm);
   });
 
   it('should reset profileForm', () => {
@@ -42,7 +50,9 @@ describe('FieldStylingFormComponent', () => {
       "placeholderText": null,
       "width": null,
       "height": null,
-      "fontSizeInput": null
+      "fontSizeInput": null,
+      "borderStyle": null,
+      'required': null,
   });
   });
 });

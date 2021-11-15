@@ -3,7 +3,7 @@
     color={{item.theme}}
 >
     <mat-label>{{item.fieldOptions?.placeholderText}}</mat-label>
-    <mat-select>
+    <mat-select [required]="item.fieldOptions?.required">
         <mat-option 
             *ngFor="let option of item.options" 
             [value]="option"

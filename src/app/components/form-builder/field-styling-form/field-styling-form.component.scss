@@ -5,13 +5,7 @@ form {
   justify-content: center;
   padding: 40px;
 
-  input {
-    display: block;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  label {
-    display: inline-block;
+  mat-checkbox {
+    padding: 15px;
   }
 }

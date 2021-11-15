@@ -1,6 +1,6 @@
 <mat-checkbox
     class="example-margin"
-    required="true"
+    [required]="item.fieldOptions?.required"
     color={{item?.theme}}
 >
     {{item.fieldOptions?.placeholderText}}

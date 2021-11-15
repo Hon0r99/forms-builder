@@ -32,7 +32,11 @@
     </mat-expansion-panel>
   
     
-    <mat-expansion-panel *ngrxLet="selectedItem$ as selectedItem"    [expanded]="selectedItem?.hasOwnProperty('id')" [disabled]="!selectedItem?.hasOwnProperty('id')">
+    <mat-expansion-panel 
+      *ngrxLet="selectedItem$ as selectedItem"    
+      [expanded]="selectedItem?.hasOwnProperty('id')" 
+      [disabled]="!selectedItem?.hasOwnProperty('id')"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           Field styling
@@ -43,7 +47,14 @@
   <mat-accordion>
   
   
-    <ul #listOne="cdkDropList"  [cdkDropListData]="droppedItems$ | ngrxPush" cdkDropList [cdkDropListConnectedTo]="[listTwo]" class="drop" (cdkDropListDropped)="drop($event)" >
+    <ul 
+      #listOne="cdkDropList"  
+      [cdkDropListData]="droppedItems$ | ngrxPush" 
+      cdkDropList 
+      [cdkDropListConnectedTo]="[listTwo]" 
+      class="drop" 
+      (cdkDropListDropped)="drop($event)" 
+    >
       <ng-container *ngrxLet="droppedItems$ as droppedItems"  >
       <ng-container *ngIf="droppedItems?.length" >
         <ng-container *ngrxLet="selectedItem$ as selectedItem">

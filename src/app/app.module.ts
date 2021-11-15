@@ -71,7 +71,6 @@ import { SignupComponent } from './components/auth/signup/signup.component';
     }),
     AppRoutingModule,
     RouterModule,
-
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

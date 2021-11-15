@@ -16,22 +16,19 @@ export class FormBuilderService {
   }
 
 
-  drop(event: any, mainTheme: string){
-    console.log(event);
-    
+  drop(event: any, mainTheme: string):void{
     if (event.previousContainer === event.container) {
       this.store$.dispatch(FieldsAction.moveField({currentIndex: event.currentIndex, previousIndex: event.previousIndex}))
     } else {
       this.store$.dispatch(FieldsAction.newField({field: JSON.parse(JSON.stringify({id: event.container.data.length, theme: mainTheme, ...event.previousContainer.data[event.previousIndex]})), index: event.currentIndex}))
     }
-    
   }
 
-  select(item:FormItems){
+  select(item:FormItems):void{
     this.store$.dispatch(FieldsAction.selectField({field: item}))
   }
 
-  setChanges(mainTheme:string){
+  setChanges(mainTheme:string):void{
     this.store$.dispatch(FieldsAction.changeTheme({theme: mainTheme}))
   }
 }

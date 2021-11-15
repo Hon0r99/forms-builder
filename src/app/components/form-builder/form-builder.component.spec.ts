@@ -1,3 +1,4 @@
+import { MatButtonModule } from '@angular/material/button';
 import { FormItems } from './../../model/FormItems.model';
 import { CdkDropList } from '@angular/cdk/drag-drop';
 import { HttpHandler } from '@angular/common/http'; 
@@ -21,7 +22,7 @@ describe('FormBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot({}),ReactiveComponentModule],
+      imports: [StoreModule.forRoot({}),ReactiveComponentModule, MatButtonModule],
       providers: [Store, HttpClientModule, HttpClient, HttpHandler, FormBuilderService],
       declarations: [ FormBuilderComponent, CdkDropList ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -32,7 +33,32 @@ describe('FormBuilderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FormBuilderComponent);
     component = fixture.componentInstance;
-    formBuilderService = fixture.debugElement.injector.get(FormBuilderService)
+    formBuilderService = fixture.debugElement.injector.get(FormBuilderService);
+    component.mainTheme = 'accent';
+    component.droppedItems$ = of([{
+        "type": "input",
+        "label": "Text input",
+        "theme": "primary",
+        "fieldOptions": {
+          "placeholderText": "Placeholder text",
+          "width": 200,
+          "fontSizeInput": 14
+        }
+      }]
+    );
+    component.selectedItem$ = of({
+      "type": "input",
+      "label": "Text input",
+      "theme": "primary",
+      "fieldOptions": {
+        "placeholderText": "Placeholder text",
+        "width": 200,
+        "fontSizeInput": 14
+      }
+    }
+  );
+    
+
     mockFormsItem = [
       {
         "type": "input",
@@ -72,9 +98,7 @@ describe('FormBuilderComponent', () => {
         }
       },
      
-    ];
-    // spyGetFormItems = spyOn(formBuilderService, 'getFormItems').and.returnValue(of(mockFormsItem))
-    
+    ];    
     fixture.detectChanges();
   });
 
@@ -114,7 +138,6 @@ describe('FormBuilderComponent', () => {
 
   it('should call setChanges and change theme of formItems', () => {
     component.formItems = mockFormsItem;
-    component.mainTheme = 'accent'
     spy = spyOn(formBuilderService, 'setChanges')
     component.setChanges();
     expect(spy.calls.count()).toBe(1);
@@ -123,8 +146,6 @@ describe('FormBuilderComponent', () => {
     })
 
   });
-
-
 
   it('should set formItems', () => {
     spy = spyOn(formBuilderService, 'getFormItems').and.returnValue(of(mockFormsItem))
