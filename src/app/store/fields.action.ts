@@ -19,7 +19,7 @@ export namespace FieldsAction {
         props< {field: FormItems}>()
     );
     export const changeTheme = createAction(
-        'SELECT_THEME',
+        'CHANGE_THEME',
         props< {theme: string}>()
     );
 }

@@ -1,7 +1,9 @@
+import { environment } from 'src/environments/environment'; 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/app/model/User.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +11,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
+  private url = environment.apiRoute;
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('auth_key');
@@ -16,17 +19,17 @@ export class AuthService {
   }
 
 
-    login(data:object):Observable<any>{
-        return this.http.post<object>("http://localhost:3000/login", data)
-            .pipe(
-                tap((response: any) => {
-                this._isLoggedIn$.next(true);
-                localStorage.setItem('auth_key', response.accessToken);
-                })
-            )        
-    }
+  public login(data: User): Observable<HttpClient>{
+    return this.http.post<object>(`${this.url}/login`, data)
+      .pipe(
+        tap((response: any) => {
+          this._isLoggedIn$.next(true);
+          localStorage.setItem('auth_key', response.accessToken);
+         })
+      )        
+  }
 
-    signup(data:object):Observable<any>{
-      return this.http.post<any>("http://localhost:3000/register", data)
+  public signup(data:object) :Observable<HttpClient>{
+    return this.http.post<any>(`${this.url}/register`, data)
   }
 }

@@ -33,11 +33,7 @@ const feildsReducer = createReducer(
     })),
     on(FieldsAction.changeField, (state,{field}) =>({
         ...state,
-        droppedItems: state.droppedItems.map(el => {
-            if (el.id === field.id){
-                return field
-            }else return el
-        })
+        droppedItems: state.droppedItems.map(el => (el.id === field.id ? field : el))
     })),
     on(FieldsAction.changeTheme, (state,{theme}) =>({
         ...state,

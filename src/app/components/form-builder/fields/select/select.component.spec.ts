@@ -19,15 +19,15 @@ describe('SelectComponent', () => {
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;
     const item = {
-      "type": "select",
-      "label": "Select",
-      "theme": "primary",
-      "options": [
-        "val1",
-        "val2"
+      'type': 'select',
+      'label': 'Select',
+      'theme': 'primary',
+      'options': [
+        'val1',
+        'val2'
       ],
-      "fieldOptions": {
-        "placeholderText": "Placeholder text"
+      'fieldOptions': {
+        'placeholderText': 'Placeholder text'
       }
     };
     component.item = item;

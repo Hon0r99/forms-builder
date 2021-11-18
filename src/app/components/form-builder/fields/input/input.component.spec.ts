@@ -19,13 +19,13 @@ describe('InputComponent', () => {
     fixture = TestBed.createComponent(InputComponent);
     component = fixture.componentInstance;
     const item = {
-      "type": "input",
-      "label": "Text input",
-      "theme": "primary",
-      "fieldOptions": {
-        "placeholderText": "Placeholder text",
-        "width": 200,
-        "fontSizeInput": 14
+      'type': 'input',
+      'label': 'Text input',
+      'theme': 'primary',
+      'fieldOptions': {
+        'placeholderText': 'Placeholder text',
+        'width': 200,
+        'fontSizeInput': 14
       }
     };
     component.item = item;

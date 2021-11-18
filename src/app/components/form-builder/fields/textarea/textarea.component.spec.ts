@@ -21,12 +21,12 @@ describe('TextareaComponent', () => {
     fixture = TestBed.createComponent(TextareaComponent);
     component = fixture.componentInstance;
     const item = {
-      "type": "textarea",
-      "label": "Textarea",
-      "theme": "primary",
-      "fieldOptions": {
-        "width": 200,
-        "placeholderText": "Placeholder text"
+      'type': 'textarea',
+      'label': 'Textarea',
+      'theme': 'primary',
+      'fieldOptions': {
+        'width': 200,
+        'placeholderText': 'Placeholder text'
       }
     };
     component.item = item;

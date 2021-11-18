@@ -19,11 +19,11 @@ describe('CheckboxComponent', () => {
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
     const item = {
-      "type": "checkbox",
-      "label": "Checkbox",
-      "theme": "primary",
-      "fieldOptions": {
-        "placeholderText": "Placeholder text"
+      'type': 'checkbox',
+      'label': 'Checkbox',
+      'theme': 'primary',
+      'fieldOptions': {
+        'placeholderText': 'Placeholder text'
       }
     };
     component.item = item;

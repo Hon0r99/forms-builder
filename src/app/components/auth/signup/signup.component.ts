@@ -14,15 +14,14 @@ export class SignupComponent implements OnInit {
   public signupForm !: FormGroup;
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router:Router, private authService: AuthService){}
 
-
-  ngOnInit():void {
+  ngOnInit(): void {
       this.signupForm = this.formBuilder.group({
           email:['', [Validators.required]],
           password:['', [Validators.required, Validators.min(8)]]
       })
   }
 
-  signup():void{
+  public signup(): void{
       this.authService.login(this.signupForm.value)
       .subscribe(res => {
           alert('Singup successfull');

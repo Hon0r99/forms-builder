@@ -16,20 +16,17 @@ import { FormBuilderService } from './form-builder.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormBuilderComponent  implements OnInit{
-  selectedItem$:Observable<FormItems>;
-  droppedItems$:Observable<FormItems[]>;
+  public selectedItem$:Observable<FormItems>;
+  public droppedItems$:Observable<FormItems[]>;
 
-  mainTheme!:string;
-  formItems!:FormItems[];
+  public mainTheme!:string;
+  public  formItems!:FormItems[];
 
- 
-
-  selectTheme = [
+  public selectTheme = [
     {value: 'primary', viewValue: 'Primary'},
     {value: 'accent', viewValue: 'Accent'},
     {value: 'warn', viewValue: 'Warn'}
   ]
-
 
   constructor (private store$: Store, private http: HttpClient, private fromBuilderService: FormBuilderService){
     this.selectedItem$ = this.store$.select(FieldsSelectors.selectedItem)
@@ -41,15 +38,15 @@ export class FormBuilderComponent  implements OnInit{
   }
 
 
-  drop(event: any){
+  public drop(event: any): void {
     this.fromBuilderService.drop(event, this.mainTheme)
   }
 
-  select(item:FormItems){
+  public select(item:FormItems): void {
     this.fromBuilderService.select(item)
   }
 
-  setChanges(){
+  public setChanges(): void {
     this.fromBuilderService.setChanges(this.mainTheme, )
     this.formItems.forEach(el => {
       el.theme = this.mainTheme;

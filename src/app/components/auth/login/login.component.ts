@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -24,9 +25,7 @@ export class LoginComponent implements OnInit{
         })
     }
 
-    login():void{
-        console.log(this.authService.login(this.loginForm.value));
-        
+    public login() :void{
         this.authService.login(this.loginForm.value).subscribe(res => {
             alert('Login successfull');
             this.loginForm.reset();
