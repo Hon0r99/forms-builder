@@ -1,0 +1,17 @@
+<div>
+    <mat-card class="authForm">
+        <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <h1>SignUp Page</h1>
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Username" type="email">
+            </mat-form-field>
+ 
+            <mat-form-field>
+             <input formControlName="password" matInput type='password' placeholder="Password">
+         </mat-form-field>
+ 
+         <button mat-raised-button color="primary" type="submit">Login</button>
+         <a routerLink="/login">Alredy registered? Click to login!</a>
+        </form>
+    </mat-card>
+ </div>

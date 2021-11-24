@@ -1,0 +1,58 @@
+<form class="change-feilds" [formGroup]="profileForm" (ngSubmit)="onSubmit()"> 
+
+    <mat-form-field
+      *ngIf="selectedItem.fieldOptions.hasOwnProperty('placeholderText')"
+      appearance="fill"
+    >
+      <mat-label>Placeholder text</mat-label>
+      <input  matInput name="placeholderText" type="text" placeholder="Text" formControlName="placeholderText" ngDefaultControl>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="selectedItem.fieldOptions.hasOwnProperty('width')"
+      appearance="fill"
+    >
+      <mat-label>Width</mat-label>
+      <input  matInput name="width" type="number" placeholder="px" formControlName="width" ngDefaultControl>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="selectedItem.fieldOptions.hasOwnProperty('height')"
+      appearance="fill"
+    >
+      <mat-label>Height</mat-label>
+      <input  matInput name="height" type="number" placeholder="px" formControlName="height" ngDefaultControl>
+    </mat-form-field>
+
+    <mat-form-field 
+      *ngIf="selectedItem.fieldOptions.hasOwnProperty('fontSizeInput')"
+      appearance="fill"
+    >
+      <mat-label>Font Size Input</mat-label>
+      <input  matInput name="fontSizeInput" type="text" placeholder="px" formControlName="fontSizeInput" ngDefaultControl>
+    </mat-form-field>
+
+    <mat-form-field 
+      appearance="fill"
+    >
+      <mat-label>Border style</mat-label>
+      <mat-select formControlName="borderStyle" ngDefaultControl>
+        <mat-option 
+          *ngFor="let option of borderStyleOptions"
+          [value]="option"
+        >
+            {{option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox
+      *ngIf="selectedItem.fieldOptions.hasOwnProperty('required')"
+      formControlName="required"
+      ngDefaultControl
+    >
+      Required
+    </mat-checkbox>
+ 
+    <button mat-raised-button type="submit" [disabled]="!profileForm.valid">Change field</button>
+  </form>

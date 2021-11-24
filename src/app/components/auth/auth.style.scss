@@ -1,0 +1,32 @@
+.authForm {
+    display: block;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(233, 233, 233, 0.474);
+  
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  
+      h1 {
+        margin: 25px 0;
+      }
+  
+      button {
+        margin-top: 30px;
+      }
+  
+      a {
+        text-decoration: none;
+        margin: 20px;
+        color: rgb(128, 128, 128);
+      }
+    }
+  }
+  

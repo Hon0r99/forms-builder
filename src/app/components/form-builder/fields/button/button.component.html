@@ -1,0 +1,10 @@
+<button 
+    [ngStyle]="{
+        width: item.fieldOptions?.width + 'px',
+        height: item.fieldOptions?.height + 'px'
+    }" 
+    mat-raised-button
+    color={{item.theme}}
+>
+    {{item.fieldOptions?.placeholderText}}
+</button>
