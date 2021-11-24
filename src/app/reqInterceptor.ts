@@ -10,7 +10,7 @@ export class ReqInterceptor implements HttpInterceptor {
 
         request = request.clone({
             setHeaders: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
         });
 

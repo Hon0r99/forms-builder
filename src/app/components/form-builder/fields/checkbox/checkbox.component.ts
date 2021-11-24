@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./checkbox.component.scss']
 })
 export class CheckboxComponent {
-  @Input() item!:FormItems
+  @Input() public item!:FormItems
 }

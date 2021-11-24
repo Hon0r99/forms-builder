@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
-  @Input() item!:FormItems;
+  @Input() public item!:FormItems;
 }

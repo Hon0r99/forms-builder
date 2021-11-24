@@ -1,5 +1,5 @@
 import { FormItems } from '../../../../model/FormItems.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -7,5 +7,5 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent {
-  @Input() item!:FormItems;
+  @Input() public item!:FormItems;
 }

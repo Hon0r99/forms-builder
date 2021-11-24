@@ -6,4 +6,5 @@ export namespace FieldsSelectors {
 
     export const droppedItems = createSelector(state, (state) => state.droppedItems)
     export const selectedItem = createSelector(state, (state) => state.selectedItem)
+    export const user = createSelector(state, (state) => state.user)
 }

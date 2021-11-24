@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,24 +7,23 @@ import { AuthService } from '../auth.service';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
+    styleUrls: ['../auth.style.scss'],
 
 })
 
 export class LoginComponent implements OnInit{
+    public loginForm!: FormGroup;
 
-    public loginForm !: FormGroup;
-    constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService : AuthService){}
+    constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService){}
 
-
-    ngOnInit():void {
+    ngOnInit(): void {
         this.loginForm = this.formBuilder.group({
             email:['', Validators.required],
             password:['',Validators.required]
         })
     }
 
-    public login() :void{
+    public login(): void {
         this.authService.login(this.loginForm.value).subscribe(res => {
             alert('Login successfull');
             this.loginForm.reset();

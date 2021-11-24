@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { FieldsAction } from 'src/app/store/fields.action';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ export class FormBuilderService {
 
   constructor(private http: HttpClient, private store$: Store) {}
 
-  getFormItems(){
+  public getFormItems(){
     return this.http.get('http://localhost:3000/formItems');
   }
 
 
-  drop(event: any, mainTheme: string):void{
+  public drop(event: CdkDragDrop<any>, mainTheme: string): void{
     if (event.previousContainer === event.container) {
       this.store$.dispatch(FieldsAction.moveField({currentIndex: event.currentIndex, previousIndex: event.previousIndex}))
     } else {
@@ -24,11 +25,11 @@ export class FormBuilderService {
     }
   }
 
-  select(item:FormItems):void{
+  public select(item: FormItems): void{
     this.store$.dispatch(FieldsAction.selectField({field: item}))
   }
 
-  setChanges(mainTheme:string):void{
+  public setChanges(mainTheme: string): void{
     this.store$.dispatch(FieldsAction.changeTheme({theme: mainTheme}))
   }
 }

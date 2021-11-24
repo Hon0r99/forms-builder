@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
-  @Input() item!:FormItems;
+  @Input() public item!:FormItems;
 }

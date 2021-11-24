@@ -14,10 +14,10 @@ import { FormItems } from '../../../model/FormItems.model';
 export class FieldStylingFormComponent {
   @Input() selectedItem!:FormItems;
 
-  borderStyleOptions = ['none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'  ];
+  public borderStyleOptions = ['none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'  ];
   
 
-  profileForm = new FormGroup({
+  public profileForm = new FormGroup({
     placeholderText: new FormControl(null,[Validators.min(1)]),
     width: new FormControl(null,[Validators.max(800)]),
     height: new FormControl(null,[Validators.max(400)]),

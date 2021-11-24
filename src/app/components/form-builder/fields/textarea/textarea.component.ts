@@ -7,5 +7,5 @@ import { Component, Input,  } from '@angular/core';
   styleUrls: ['./textarea.component.scss']
 })
 export class TextareaComponent {
-  @Input () item!:FormItems;
+  @Input () public item!:FormItems;
 }

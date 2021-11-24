@@ -60,11 +60,11 @@
         <ng-container *ngrxLet="selectedItem$ as selectedItem">
           <li  *ngFor="let item of droppedItems" class="draggable-fields-item"  cdkDrag (click)="select(item)"  [ngClass]="{'active': item === selectedItem}" >
             <div *cdkDragPlaceholder class="custom-placeholder "></div>
-              <app-textarea [item]="item" *ngIf="item.type === 'textarea'" ></app-textarea>
-              <app-button [item]="item" *ngIf="item.type === 'button'" ></app-button>
-              <app-checkbox [item]="item" *ngIf="item.type === 'checkbox'" ></app-checkbox>
-              <app-input [item]="item" *ngIf="item.type === 'input'" ></app-input>
-              <app-select [item]='item' *ngIf="item.type === 'select'" ></app-select>
+              <app-textarea [item]="item" *ngIf="item.type === fields[0]" ></app-textarea>
+              <app-button [item]="item" *ngIf="item.type === fields[1]" ></app-button>
+              <app-checkbox [item]="item" *ngIf="item.type === fields[2]" ></app-checkbox>
+              <app-input [item]="item" *ngIf="item.type === fields[3]" ></app-input>
+              <app-select [item]='item' *ngIf="item.type === fields[4]" ></app-select>
           </li>	
         </ng-container>
       </ng-container>
@@ -79,11 +79,11 @@
     <li  *ngFor="let item of formItems" class="draggable-fields-item border" cdkDrag>
       <div *cdkDragPlaceholder class="custom-placeholder "></div>
       <label >{{item.label}}</label>
-      <app-textarea [item]="item" *ngIf="item.type === 'textarea'" ></app-textarea>
-      <app-button [item]="item" *ngIf="item.type === 'button'" ></app-button>
-      <app-checkbox [item]="item" *ngIf="item.type === 'checkbox'" ></app-checkbox>
-      <app-input [item]="item" *ngIf="item.type === 'input'" ></app-input>
-      <app-select [item]='item' *ngIf="item.type === 'select'" ></app-select>
+      <app-textarea [item]="item" *ngIf="item.type === fields[0]" ></app-textarea>
+      <app-button [item]="item" *ngIf="item.type === fields[1]" ></app-button>
+      <app-checkbox [item]="item" *ngIf="item.type === fields[2]" ></app-checkbox>
+      <app-input [item]="item" *ngIf="item.type === fields[3]" ></app-input>
+      <app-select [item]='item' *ngIf="item.type === fields[4]" ></app-select>
     </li>			
   </ul>
   

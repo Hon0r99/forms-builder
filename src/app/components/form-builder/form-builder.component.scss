@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 form {
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid rgb(186, 186, 186);
+  border-bottom: 1px solid $border-color;
   box-shadow: 0px 3px 9px rgba(179, 179, 179, 0.323);
   padding: 50px;
   min-height: 300px;
@@ -46,19 +48,19 @@ form {
     }
   }
   &-item:hover {
-    background: rgba(121, 142, 197, 0.446);
+    background: $field-hover-color;
     cursor: pointer;
   }
 
   &-item.active {
-    background: rgba(217, 220, 228, 0.522);
+    background: $field-active-color;
     border: 1px solid black;
   }
 }
 
 .custom-placeholder {
   background: rgb(206, 197, 245);
-  border: dashed 2px rgb(118, 116, 126);
+  border: dashed 2px $border-color;
   min-height: 60px;
   transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
   min-width: 400px;

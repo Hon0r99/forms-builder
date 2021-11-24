@@ -9,6 +9,14 @@ import { Observable } from 'rxjs';
 import { HttpClient} from '@angular/common/http';
 import { FormBuilderService } from './form-builder.service';
 
+enum fieldsEnum{
+  textarea,
+  button,
+  checkbox,
+  input,
+  select
+} 
+
 @Component({
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
@@ -20,7 +28,8 @@ export class FormBuilderComponent  implements OnInit{
   public droppedItems$:Observable<FormItems[]>;
 
   public mainTheme!:string;
-  public  formItems!:FormItems[];
+  public formItems!:FormItems[];
+  public fields = fieldsEnum;
 
   public selectTheme = [
     {value: 'primary', viewValue: 'Primary'},

@@ -1,11 +1,13 @@
 
 import { Action, createReducer, on } from "@ngrx/store";
 import { FormItems } from "../model/FormItems.model";
+import { User } from "../model/User.model";
 import { FieldsAction } from "./fields.action";
 
 export interface State {
     droppedItems:FormItems[],
     selectedItem:FormItems,
+    user?:User,
 }
 
 const initialState: State = {
@@ -40,6 +42,10 @@ const feildsReducer = createReducer(
         droppedItems: state.droppedItems.map(el => {
             return {...el, theme: theme}
         })
+    })),
+    on(FieldsAction.newUser, (state,{user}) =>({
+        ...state,
+        user: {...user},
     })),
 );
 
